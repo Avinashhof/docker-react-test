@@ -8,3 +8,17 @@ before_install:
 script: 
     - docker run -e CI=true avinashkumar15/docker-react-test npm run test
     
+deploy: 
+    edge: true
+    provider: elasticbeanstalk
+    region: "us-west-2"
+    app: "docker-aws-react" # name of beanstalk application created in aws
+    bucket_name: "check the bucket name in S3"
+    bucket: "docker-aws-react"
+    on:
+        branch: master
+    access_key_id : $AWS_ACCESS_KEY
+    secret_access_key: $AWS_SECRET_KEY
+
+## provide access keys and secrets access keys from IAM user for beantalk to environemnt variable in travis CI (access_key_id: $AWS_ACCESS_KEY
+#secret_access_key: $AWS_SECRET_KEY)
